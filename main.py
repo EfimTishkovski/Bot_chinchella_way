@@ -3,6 +3,8 @@ from telebot import types
 import random
 import xlrd
 
+#TOKEN
+
 bot = telebot.TeleBot('TOKEN.txt')             # Создание экземпляра бота и подключение токена
 
 @bot.message_handlers(commands=['start'])      # Создание стартового сообщения
