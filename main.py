@@ -1,13 +1,17 @@
 import telebot
 from telebot import types
 import random
-import xlrd
+#import xlrd
 
-#TOKEN
+# Чтение токена из фийла
+tok = open('TOKEN.txt', 'r')
+TOKEN = tok.read()
 
-bot = telebot.TeleBot('TOKEN.txt')             # Создание экземпляра бота и подключение токена
+bot = telebot.TeleBot(TOKEN)             # Создание экземпляра бота и подключение токена
 
-@bot.message_handlers(commands=['start'])      # Создание стартового сообщения
+print('Запущено')
+
+@bot.message_handler(commands=['start'])      # Создание стартового сообщения
 def start_messege(messege):
     bot.send_message(messege.chat.id, 'Приветствую странник! Ты вступил на путь шиншиллы.')  # Само сообщение
     picture = open('chichella.webp', 'rb')     # Создание переменной с каратинкой
