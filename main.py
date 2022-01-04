@@ -1,5 +1,8 @@
+import datetime
+
 import telebot
 from telebot import types
+import time
 import random
 #import xlrd
 
@@ -36,7 +39,7 @@ def menu(message):
             bot.send_photo(message.chat.id, source_photo)
             bot.send_message(message.chat.id, 'Этот мем стал началом пути шиншиллы.')
             bot.send_message(message.chat.id, 'Вначале, это был путь страданий, но потом он стал путём силы.')
-            bot.send_message(message.chat.id, 'Девиз: Я скала, я кремень!.')
+            bot.send_message(message.chat.id, 'Девиз: Я скала, я кремень!')
         elif message.text == 'Цитата':
             bot.send_message(message.chat.id, 'Тут будет цитата из списка.')
         elif message.text == 'Послание Шиншилле':
@@ -52,14 +55,15 @@ def messege_to_chinchella(message):
     bot.register_next_step_handler(msg, mess_from_walker)
 
 def mess_from_walker(message):
-    print(message.text)
-    #print(message.from_user)
-    print('От кого:')
-    print(message.from_user.first_name)
-    print(message.date)
-    #walker = []
-    #walker.append(message.text)
-    bot.send_message(message.chat.id, 'Я услышала слова твои!')
-
+    try:
+        file = open('message_store.txt', 'a', encoding='utf-8')
+        print('Сообщение:',message.text, file=file, end=' ')
+        print('От кого:', message.from_user.first_name, file=file, end=' ')
+        print('id:', message.from_user.id, file=file, end=' ')
+        print('Время:', datetime.datetime.now(), file=file)
+        file.close()
+        bot.send_message(message.chat.id, 'Я услышала слова твои!')
+    except:
+        bot.send_message(message.chat.id, 'Я услышала, но не запомнила.')
 
 bot.polling(none_stop=True, interval=0)       # Опрос сервера, не написал ли кто-нибудь?
