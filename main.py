@@ -1,4 +1,6 @@
 import datetime
+import time
+
 import telebot
 from telebot import types
 import random
@@ -99,4 +101,13 @@ def mess_from_walker(message):
     except:
         bot.send_message(message.chat.id, 'Я услышала, но не запомнила.')
 
-bot.polling(none_stop=True, interval=0)       # Опрос сервера, не написал ли кто-нибудь?
+#bot.polling(none_stop=True, interval=0)       # Опрос сервера, не написал ли кто-нибудь?
+
+# Дополнение чтобы бот при падении перезапускался
+if __name__ == '__main__':
+    while True:
+        try:
+            bot.polling(none_stop=True, interval=0)
+        except Exception as ex:
+            time.sleep(3)
+            print(ex)
