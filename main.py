@@ -52,17 +52,18 @@ def start_messege(messege):
 def help_post(message):
     bot.send_message(message.chat.id,   '/start - Запустить бота заново\n' +
                                         '/help - Запустить меню справки\n' +
-                                        '/stop - Остановка программы, повторный пуск только с сервера!\n' +
+                                        #'/stop - Остановка программы, повторный пуск только с сервера!\n' +
                                         'Источник - Узнать откуда всё началось\n' +
                                         'Цитата - Получить рандомную цитату из запасов шиншиллы\n' +
                                         '"Послание" - Написать в сообщении и шиншила примет и запомнит ваше послание\n')
-
+"""
 # Функция остановки бота
 @bot.message_handler(commands=['stop'])
 def stop_command(message):
     bot.send_message(message.chat.id, 'Я остановлена, повторный пуск только из вне')
     print('Оствновлено')
     bot.stop_polling()
+"""
 
 # Функция обработки нажатий на кнопки
 @bot.message_handler(func=lambda message: True)
