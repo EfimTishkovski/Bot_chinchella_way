@@ -18,7 +18,7 @@ citate_mass = ['Я скала! Я кремень!',
                'В тысяче слов нет смысла.',
                'Слова имеют силу.',
                'Покой для покойников',
-               'пока жив, никогда не поздно',
+               'Пока жив, никогда не поздно',
                'Горные ветра на раз выдувают всю дурь из головы',
                'Таков путь.©Мандалорец',
                'Отступление ещё не бегство. Отход, перегрупировка и новый удар.'
@@ -62,7 +62,7 @@ def menu(message):
         elif message.text == 'Цитата':
             #bot.send_message(message.chat.id, 'Тут будет цитата из списка.')
             bot.send_message(message.chat.id, random.choice(citate_mass))
-        elif message.text == 'Послание':
+        elif message.text.lower() == 'послание':
             messege_to_chinchella(message)
         else:
             bot.send_message(message.chat.id, 'Я не монимаю слов твоих.')
