@@ -1,10 +1,8 @@
 import datetime
 import time
-
 import telebot
 from telebot import types
 import random
-import keyboard
 
 # Чтение токена из фийла
 tok = open('TOKEN.txt', 'r')
@@ -62,7 +60,8 @@ def help_post(message):
 def stop_command(message):
     bot.send_message(message.chat.id, 'Я остановлена, повторный пуск только из вне')
     print('Оствновлено')
-    bot.stop_polling()
+    sys.exit()
+    #bot.stop_polling()
 """
 
 # Функция обработки нажатий на кнопки
@@ -78,7 +77,6 @@ def menu(message):
             bot.send_message(message.chat.id, 'Вначале, это был путь страданий, но потом он стал путём силы.')
             bot.send_message(message.chat.id, 'Девиз: Я скала, я кремень!')
         elif message.text == 'Цитата':
-            #bot.send_message(message.chat.id, 'Тут будет цитата из списка.')
             bot.send_message(message.chat.id, random.choice(citate_mass))
         elif message.text.lower() == 'послание':
             messege_to_chinchella(message)
