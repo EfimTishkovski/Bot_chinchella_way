@@ -52,7 +52,8 @@ def start_messege(messege):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_source = types.KeyboardButton('Источник')                    # Создание кнопки
     btn_citation = types.KeyboardButton('Цитата')                    # Создание кнопки
-    markup.add(btn_source, btn_citation)                             # Добавление кнопок
+    btn_message = types.KeyboardButton('Послание')                   # Создание кнопки
+    markup.add(btn_source, btn_citation, btn_message)                # Добавление кнопок
     bot.reply_to(messege, 'Чтобы поговорить с шиншилой, жми на кнопки ниже', reply_markup=markup)
 
 # Функция работы меню помощи(/help)
@@ -60,9 +61,10 @@ def start_messege(messege):
 def help_post(message):
     bot.send_message(message.chat.id,   '/start - Запустить бота заново\n' +
                                         '/help - Запустить меню справки\n' +
-                                        'Источник - Узнать откуда всё началось\n' +
-                                        'Цитата - Получить рандомную цитату из запасов шиншиллы\n' +
-                                        '"Послание" - Написать в сообщении и шиншила примет и запомнит ваше послание\n')
+                                        'Источник - Узнать откуда всё началось.\n' +
+                                        'Цитата - Получить рандомную цитату из запасов шиншиллы.\n' +
+                                        'Послание - Шиншила примет и запомнит ваше послание.\n' +
+                                        'Шиншилла знаек кое-что о людях и клубах, напишите имя и если она знает, то ответит. \n')
 
 # Функция обработки нажатий на кнопки
 @bot.message_handler(func=lambda message: True)
