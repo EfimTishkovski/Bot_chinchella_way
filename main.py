@@ -11,11 +11,11 @@ tok = open('TOKEN.txt', 'r')
 TOKEN = tok.read()
 
 bot = telebot.TeleBot(TOKEN)   # Создание экземпляра бота и подключение токена
-# Источник мудрости Шинниллы
+# Источник мудрости Шиншиллы
 citate_mass = ['Я скала! Я кремень!',
                'Муррррр...©Кот',
                'Чужая душа - потёмки, но ингда нужно сделать этот шаг в темноту.',
-               'Немогу - значит не могу, не можешь и не надо, остановись, поверни назад и останешся жив. ©Анатолий Букреев.',
+               'Немогу - значит не могу, не можешь и не надо, остановись, поверни назад, и останешся жив. ©Анатолий Букреев.',
                'Истории о деньгах и успехе не удивительны, история о том что кто-то по настоящему любил, по настоящему дружил, удивительна.',
                'Сейчас модно, что никто никого ни ждёт и не держит, - это ошибка.',
                'В тысяче слов нет смысла.',
@@ -55,16 +55,16 @@ def start_messege(messege):
     btn_citation = types.KeyboardButton('Цитата')                    # Создание кнопки
     btn_message = types.KeyboardButton('Послание')                   # Создание кнопки
     markup.add(btn_source, btn_citation, btn_message)                # Добавление кнопок
-    bot.reply_to(messege, 'Чтобы поговорить с шиншилой, жми на кнопки ниже', reply_markup=markup)
+    bot.reply_to(messege, 'Чтобы поговорить с шиншиллой, жми на кнопки ниже', reply_markup=markup)
 
 # Функция работы меню помощи(/help)
 @bot.message_handler(commands=['help'])
 def help_post(message):
-    bot.send_message(message.chat.id,   '/start - Запустить бота заново\n' +
-                                        '/help - Запустить меню справки\n' +
+    bot.send_message(message.chat.id,   '/start - Запустить бота заново.\n' +
+                                        '/help - Запустить меню справки.\n' +
                                         'Источник - Узнать откуда всё началось.\n' +
-                                        'Цитата - Получить рандомную цитату из запасов шиншиллы.\n' +
-                                        'Послание - Шиншила примет и запомнит ваше послание.\n' +
+                                        'Цитата - Получить случайную цитату из запасов шиншиллы.\n' +
+                                        'Послание - Шиншилла примет и запомнит ваше послание.\n' +
                                         'Шиншилла знает кое-что о людях и клубах, напишите имя и если она знает, то ответит. \n')
 
 # Функция обработки нажатий на кнопки
@@ -100,6 +100,7 @@ def menu(message):
             bot.send_message(message.chat.id, 'Муррррр =)')
             time.sleep(0.5)
             bot.send_audio(message.chat.id, audio, title='Мууррчание')
+            audio.close()
         elif message.text.lower() == 'артур':
             bot.send_message(message.chat.id, 'Здарова камрад!')
         elif message.text.lower() == 'геликтит':
@@ -120,6 +121,7 @@ def menu(message):
             bot.send_message(message.chat.id, 'Отправила')
             file_storage = open('message_store.txt', 'r', encoding='utf-8')
             bot.send_document(message.chat.id, file_storage)
+            file_storage.close()
         else:
             bot.send_message(message.chat.id, 'Я не монимаю слов твоих.')
 
