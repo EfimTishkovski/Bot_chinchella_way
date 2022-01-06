@@ -4,6 +4,8 @@ import telebot
 from telebot import types
 import random
 
+last_citate = ''
+
 # Чтение токена из фийла
 tok = open('TOKEN.txt', 'r')
 TOKEN = tok.read()
@@ -80,7 +82,17 @@ def menu(message):
             time.sleep(0.5)
             bot.send_message(message.chat.id, 'Девиз: Я скала, я кремень!')
         elif message.text == 'Цитата':
-            bot.send_message(message.chat.id, random.choice(citate_mass))
+            # Небольшая фича чтобы небыло одинаковых цитат друг за другом
+            global last_citate
+            while True:
+                new_citate = random.choice(citate_mass)
+                if new_citate != last_citate:
+                    # Если цитата не такая как предыдущая, выводим её
+                    bot.send_message(message.chat.id, new_citate)
+                    print('OK', new_citate, last_citate)
+                    last_citate = new_citate
+                    break            # Выход из цикла, иначе зациклимся)
+
         elif message.text.lower() == 'послание':
             messege_to_chinchella(message)
         else:
