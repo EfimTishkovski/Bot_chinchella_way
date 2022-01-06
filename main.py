@@ -4,13 +4,13 @@ import telebot
 from telebot import types
 import random
 
-last_citate = ''
+last_citate = ''                # Глобальная переменная для цитат
 
 # Чтение токена из фийла
 tok = open('TOKEN.txt', 'r')
 TOKEN = tok.read()
 
-bot = telebot.TeleBot(TOKEN)             # Создание экземпляра бота и подключение токена
+bot = telebot.TeleBot(TOKEN)   # Создание экземпляра бота и подключение токена
 # Источник мудрости Шинниллы
 citate_mass = ['Я скала! Я кремень!',
                'Муррррр...©Кот',
@@ -52,19 +52,9 @@ def start_messege(messege):
 def help_post(message):
     bot.send_message(message.chat.id,   '/start - Запустить бота заново\n' +
                                         '/help - Запустить меню справки\n' +
-                                        #'/stop - Остановка программы, повторный пуск только с сервера!\n' +
                                         'Источник - Узнать откуда всё началось\n' +
                                         'Цитата - Получить рандомную цитату из запасов шиншиллы\n' +
                                         '"Послание" - Написать в сообщении и шиншила примет и запомнит ваше послание\n')
-"""
-# Функция остановки бота
-@bot.message_handler(commands=['stop'])
-def stop_command(message):
-    bot.send_message(message.chat.id, 'Я остановлена, повторный пуск только из вне')
-    print('Оствновлено')
-    sys.exit()
-    #bot.stop_polling()
-"""
 
 # Функция обработки нажатий на кнопки
 @bot.message_handler(func=lambda message: True)
