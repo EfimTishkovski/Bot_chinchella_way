@@ -37,8 +37,9 @@ citate_mass = ['Я скала! Я кремень!',
                'Быть собой нужно не привлекая внимание санитаров.',
                'Если вы разговариваете с вещами это не проблема, проблема - это кога они начинают отвечать',
                'Любая сила безлика, что она будет нести зависит то того кто её использует.',
-               'Bella! Horida bella!',
-               'Лекго быть храбрым сидя на диване'
+               'Bella! horida bella!',
+               'Лекго быть храбрым сидя на диване',
+               'Иногда чудеса случаются сами, но чаще всего их приходится организовывать.'
 ]
 print('Запущено')
 
@@ -46,8 +47,8 @@ print('Запущено')
 def start_messege(messege):
     bot.send_message(messege.chat.id, 'Приветствую странник! Ты вступил на путь шиншиллы.')  # Само сообщение
     picture = open('chichella.webp', 'rb')     # Создание переменной с каратинкой
+    time.sleep(0.5)  # Задержка, чтобы сообщения не летели как из пулемёта
     bot.send_sticker(messege.chat.id, picture) # показать картинку
-
     # Клавиатура (кнопки)
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     btn_source = types.KeyboardButton('Источник')                    # Создание кнопки
@@ -64,7 +65,7 @@ def help_post(message):
                                         'Источник - Узнать откуда всё началось.\n' +
                                         'Цитата - Получить рандомную цитату из запасов шиншиллы.\n' +
                                         'Послание - Шиншила примет и запомнит ваше послание.\n' +
-                                        'Шиншилла знаек кое-что о людях и клубах, напишите имя и если она знает, то ответит. \n')
+                                        'Шиншилла знает кое-что о людях и клубах, напишите имя и если она знает, то ответит. \n')
 
 # Функция обработки нажатий на кнопки
 @bot.message_handler(func=lambda message: True)
@@ -110,19 +111,23 @@ def menu(message):
         elif message.text.lower() == 'лида':
             bot.send_message(message.chat.id, 'Надежда и опора руковода, страшна в гневе))')
         elif message.text.lower() == 'виталик':
-            bot.send_message(message.chat.id, 'Просто хороший парень')
+            bot.send_message(message.chat.id, 'Просто хороший парень и до кучи комендант')
         elif message.text.lower() == 'наташа':
             bot.send_message(message.chat.id, 'На словах страшна, добрая внутри =)')
         elif message.text.lower() == 'андрей':
             bot.send_message(message.chat.id, 'Слава завснару! =)')
+        elif message.text.lower() == 'отправить хранилище':
+            bot.send_message(message.chat.id, 'Отправила')
+            file_storage = open('message_store.txt', 'r', encoding='utf-8')
+            bot.send_document(message.chat.id, file_storage)
         else:
             bot.send_message(message.chat.id, 'Я не монимаю слов твоих.')
 
-#Функация обработки сообщения от пользователя
+#Функция обработки сообщения от пользователя
 def messege_to_chinchella(message):
     msg = bot.send_message(message.chat.id, 'Я слушаю тебя.')
     bot.register_next_step_handler(msg, mess_from_walker)
-
+# Функция сохранения посланий от пользователей
 def mess_from_walker(message):
     try:
         file = open('message_store.txt', 'a', encoding='utf-8')
@@ -141,7 +146,7 @@ def mess_from_walker(message):
 if __name__ == '__main__':
     while True:
         try:
-            bot.polling(none_stop=True, interval=0)
+            bot.polling(none_stop=True, interval=0)  # Опрос сервера, не написал ли кто-нибудь?
         except Exception as ex:
             time.sleep(3)
             print(ex)
