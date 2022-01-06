@@ -79,12 +79,32 @@ def menu(message):
                 if new_citate != last_citate:
                     # Если цитата не такая как предыдущая, выводим её
                     bot.send_message(message.chat.id, new_citate)
-                    print('OK', new_citate, last_citate)
                     last_citate = new_citate
                     break            # Выход из цикла, иначе зациклимся)
-
         elif message.text.lower() == 'послание':
             messege_to_chinchella(message)
+        # Пасхалки =)
+        elif message.text.lower() == 'кот':
+            audio = open('meow-and-purr.mp3', 'rb')
+            bot.send_message(message.chat.id, 'Муррррр =)')
+            time.sleep(0.5)
+            bot.send_audio(message.chat.id, audio, title='Мууррчание')
+        elif message.text.lower() == 'артур':
+            bot.send_message(message.chat.id, 'Здарова камрад!')
+        elif message.text.lower() == 'геликтит':
+            bot.send_message(message.chat.id, 'Пещеры ждут! Арабика скучает)')
+        elif message.text.lower() == 'ближайший поход':
+            bot.send_message(message.chat.id, 'Ееее! Гнездо душевного туризма))')
+        elif message.text.lower() == 'альтаир':
+            bot.send_message(message.chat.id, 'Братья по разуму)')
+        elif message.text.lower() == 'лида':
+            bot.send_message(message.chat.id, 'Надежда и опора руковода, страшна в гневе))')
+        elif message.text.lower() == 'виталик':
+            bot.send_message(message.chat.id, 'Просто хороший парень')
+        elif message.text.lower() == 'наташа':
+            bot.send_message(message.chat.id, 'На словах страшна, добрая внутри =)')
+        elif message.text.lower() == 'андрей':
+            bot.send_message(message.chat.id, 'Слава завснару! =)')
         else:
             bot.send_message(message.chat.id, 'Я не монимаю слов твоих.')
 
