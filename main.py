@@ -87,7 +87,7 @@ def menu(message):
             time.sleep(0.5)
             bot.send_message(message.chat.id, 'Девиз: Я скала, я кремень!')
         elif message.text == 'Цитата':
-            # Небольшая фича чтобы небыло одинаковых цитат друг за другом
+            # Небольшая фича чтобы не было одинаковых цитат друг за другом
             global last_citate
             while True:
                 new_citate = random.choice(citate_mass)
@@ -127,7 +127,7 @@ def menu(message):
             bot.send_document(message.chat.id, file_storage)
             file_storage.close()
         else:
-            bot.send_message(message.chat.id, 'Я не монимаю слов твоих.')
+            bot.send_message(message.chat.id, 'Я не понимаю слов твоих.')
 
 #Функция обработки сообщения от пользователя
 def messege_to_chinchella(message):
