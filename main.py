@@ -50,7 +50,7 @@ print('Запущено')
 @bot.message_handler(commands=['start'])      # Создание стартового сообщения
 def start_messege(messege):
     bot.send_message(messege.chat.id, 'Приветствую странник! Ты вступил на путь шиншиллы.')  # Само сообщение
-    picture = open('chichella.webp', 'rb')     # Создание переменной с каратинкой
+    picture = open('chichella.webp', 'rb')     # Создание переменной с картинкой
     time.sleep(0.5)  # Задержка, чтобы сообщения не летели как из пулемёта
     bot.send_sticker(messege.chat.id, picture) # показать картинку
     # Клавиатура (кнопки)
